@@ -29,3 +29,10 @@ data "aws_subnet" "private" {
     values = ["private"]
   }
 }
+
+data "aws_subnet" "data" {
+  filter {
+    name   = "tag:Name"
+    values = ["data"]
+  }
+}
