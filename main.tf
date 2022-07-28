@@ -36,3 +36,11 @@ data "aws_subnet" "data" {
     values = ["data"]
   }
 }
+
+data "aws_secretsmanager_secret" "mysql_passwd" {
+  name = "rds_mysql"
+}
+
+data "aws_secretsmanager_secret_version" "mysql_passwd_version" {
+  secret_id = data.aws_secretsmanager_secret.mysql_passwd.id
+}

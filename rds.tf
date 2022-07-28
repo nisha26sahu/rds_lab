@@ -15,7 +15,7 @@ resource "aws_db_instance" "database-instance" {
   identifier              = "movies-db-01"
   db_name                 = "movies_db"
   username                = "admin"
-  password                = "admin1234"
+  password                = jsondecode(data.aws_secretsmanager_secret_version.mysql_passwd_version.secret_string)["admin"]
   multi_az                = true
   db_subnet_group_name    = aws_db_subnet_group.db_subnet_group.id
   vpc_security_group_ids  = [aws_security_group.db-sg.id]
